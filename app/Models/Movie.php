@@ -18,4 +18,11 @@ class Movie extends Model
     {
         return $this->belongsTo(Genre::class);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'publish_date' => 'datetime',
+        ];
+    }
 }

@@ -33,7 +33,7 @@
                           <h5 class="card-title">{{$movie->title}}</h5>
                           <p class="card-text">{{$movie->genre->name}}</p>
                           <p class="card-text" style="flex-grow: 1">{{$movie->description}}</p>
-                          <p class="text-tertiary">{{$movie->publish_date}}</p>
+                          <p class="text-secondary">{{$movie->publish_date->format('d-m-Y')}}</p>
 
                           <form action="{{ route('delete', $movie)}}" method="POST">
                             @csrf
