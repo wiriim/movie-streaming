@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('photo');
-            $table->string('publish_date');
+            $table->date('publish_date');
             $table->string('description');
             $table->foreignId('genre_id')->constrained();
         });
