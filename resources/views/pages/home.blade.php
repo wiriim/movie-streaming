@@ -14,7 +14,7 @@
             @foreach ($movies as $movie)
                 <div class="card-wrapper">
                     <div class="card" style="width: 18rem; min-height: 500px">
-                        <img src="{{ asset($movie->photo) }}" class="card-img-top" alt="$movie->title">
+                        <img src="{{ asset('storage/'.$movie->photo) }}" class="card-img-top" alt="{{$movie->title}}">
                         <div class="card-body">
                           <h5 class="card-title">{{$movie->title}}</h5>
                           <p class="card-text">{{$movie->genre->name}}</p>
