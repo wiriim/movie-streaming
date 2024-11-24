@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Genre extends Model
 {
+    protected $fillable = [
+        'name',
+    ];
     public function movie(): HasMany
     {
         return $this->hasMany(Movie::class);

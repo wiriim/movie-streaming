@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Storage;
 
 class MovieController extends Controller
 {
@@ -28,17 +29,28 @@ class MovieController extends Controller
 
         $path = $request->file('photo')->store('photos', 'public');
         
-        $genreId = Genre::where('name', $validate['genre'])->get('id');
+        $genreId = Genre::where('name', $validate['genre'])->get();
+        
         if ($genreId->isEmpty()){
-            return "genre not found";
+            Genre::create([
+                'name' => $validate['genre'],
+            ]);
+            $genreId = Genre::where('name', $validate['genre'])->get();
         }
+
         Movie::create([
             'title' => $validate['title'],
             'description'=> $validate['description'],
             'publish_date'=> $validate['date'],
-            'genre_id' => 3,
+            'genre_id' => $genreId->first()->id,
             'photo' => $path
         ]);
         return redirect()->route('home')->with('success','Movie successfully added!');
+    }
+
+    public function delete(Request $request, Movie $movie){
+        $movie->delete();
+        Storage::disk('public')->delete($movie->photo);
+        return redirect()->route('home')->with('success','Movie successfully deleted');
     }
 }

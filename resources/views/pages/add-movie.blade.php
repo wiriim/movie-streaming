@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-lg">
-        <form enctype="multipart/form-data" action="{{ route('add-movie') }}" method="POST">
+        <form enctype="multipart/form-data" action="{{ route('create') }}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="genre" class="form-label">Genre</label>

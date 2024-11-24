@@ -6,7 +6,7 @@
         <div class="logo-wrapper" style="width: 300px; position: relative">
             <img src="{{ asset('popcorn.jpg') }}" alt="popcorn" width="300px" height="auto">
             <div class="name-logo" style="position: absolute; bottom: 0; left: 0">
-                <span class="fs-1">𝐵𝑒𝑒𝐹𝓁𝒾𝓍</span>
+                <span class="fs-1 text-danger">𝐵𝑒𝑒𝐹𝓁𝒾𝓍</span>
             </div>
         </div>
         
@@ -34,7 +34,13 @@
                           <p class="card-text">{{$movie->genre->name}}</p>
                           <p class="card-text" style="flex-grow: 1">{{$movie->description}}</p>
                           <p class="text-tertiary">{{$movie->publish_date}}</p>
-                          <a href="#" class="btn btn-danger">delete</a>
+
+                          <form action="{{ route('delete', $movie)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" style="width: 100%">Delete</button>
+                          </form>
+                         
                         </div>
                     </div>
                 </div>
