@@ -15,12 +15,13 @@ class MovieController extends Controller
     }
 
     public function addMovie(){
-        return view('pages.add-movie');
+        $genres = Genre::all();
+        return view('pages.add-movie', ['genres'=>$genres]);
     }
 
     public function create(Request $request){
         $validate = $request->validate([
-            'genre' => 'required|max:10',
+            'genre' => 'required',
             'photo' => 'required|image',
             'title' => 'required|max:30',
             'description' => 'required|max:50',
@@ -30,13 +31,6 @@ class MovieController extends Controller
         $path = $request->file('photo')->store('photos', 'public');
         
         $genreId = Genre::where('name', $validate['genre'])->get();
-        
-        if ($genreId->isEmpty()){
-            Genre::create([
-                'name' => $validate['genre'],
-            ]);
-            $genreId = Genre::where('name', $validate['genre'])->get();
-        }
 
         Movie::create([
             'title' => $validate['title'],

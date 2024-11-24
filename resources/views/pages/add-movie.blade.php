@@ -7,7 +7,11 @@
             @csrf
             <div class="mb-3">
               <label for="genre" class="form-label">Genre</label>
-              <input name="genre" type="text" class="form-control" id="genre" aria-describedby="genre">
+              <select name="genre" id="genre" class="form-select">
+                @foreach ($genres as $genre)
+                    <option value="{{$genre->name}}">{{$genre->name}}</option>
+                @endforeach
+              </select>
             </div>
             @error('genre')
                 <div class="alert alert-danger">{{$message}}</div>
