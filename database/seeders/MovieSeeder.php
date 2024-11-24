@@ -22,7 +22,7 @@ class MovieSeeder extends Seeder
                 'title'=> $titles[$i],
                 'photo' => 'photos/'.$photos[$i],
                 'publish_date' => Date::now(),
-                'description' => fake()->sentence(5),
+                'description' => 'Some quick example text to build on the card title and make up the bulk of the card content',
                 'genre_id' => $genreIds[$i],
             ]);
         }

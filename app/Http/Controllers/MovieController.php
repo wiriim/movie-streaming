@@ -39,6 +39,6 @@ class MovieController extends Controller
             'genre_id' => 3,
             'photo' => $path
         ]);
-
+        return redirect()->route('home')->with('success','Movie successfully added!');
     }
 }
