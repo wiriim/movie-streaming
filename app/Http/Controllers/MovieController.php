@@ -22,10 +22,10 @@ class MovieController extends Controller
     public function create(Request $request){
         $validate = $request->validate([
             'genre' => 'required',
-            'photo' => 'required|image',
+            'photo' => 'required|image|max:5120',
             'title' => 'required|max:30',
             'description' => 'required|max:50',
-            'date' => 'required|date'
+            'date' => 'required|date|before:tomorrow'
         ]);
 
         $path = $request->file('photo')->store('photos', 'public');
