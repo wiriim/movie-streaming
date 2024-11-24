@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function(){
-    return view('pages.home');
-});
+Route::redirect('/', '/home');
+
+Route::get('/home', [MovieController::class, 'index'])->name('home');
