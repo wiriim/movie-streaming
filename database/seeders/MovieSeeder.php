@@ -15,12 +15,14 @@ class MovieSeeder extends Seeder
     public function run(): void
     {
         $titles = ['Doraemon', 'Bluey', 'Elemental', 'Spiderman', 'Cars'];
+        $genreIds = ['2', '2', '1', '3', '5'];
         for ($i = 0; $i < 5; $i++){
             Movie::create([
                 'title'=> $titles[$i],
                 'photo' => 'placeholder.png',
                 'publish_date' => Date::now(),
                 'description' => fake()->sentence(5),
+                'genre_id' => $genreIds[$i],
             ]);
         }
     }
